@@ -1,1 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
+
+@theme {
+  --color-deep-space-blue: #012a4a;
+  --color-yale-blue-dark: #013a63;
+  --color-yale-blue: #01497c;
+  --color-dusk-blue: #014f86;
+
+  --color-rich-cerulean: #2a6f97;
+  --color-cerulean: #2c7da0;
+  --color-blue-green: #468faf;
+  --color-pacific-blue: #61a5c2;
+
+  --color-sky-blue-light: #89c2d9;
+  --color-light-blue: #a9d6e5;
+}
