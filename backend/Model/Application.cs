@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
+using backend.Enums;
+
 public class Application
 {   
-    [Key]
     public int Id { get; set; }
 
     [MaxLength(30)]
@@ -12,7 +13,6 @@ public class Application
     [MaxLength(30)]
     [Required]
     public string Position { get; set; } = string.Empty;
-    [MaxLength(30)]
     [Required]
-    public string Status { get; set; } = string.Empty;
+    public ApplicationStatus Status { get; set; }
 }

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260619210331_PopulaTabela")]
-    partial class PopulaTabela
+    [Migration("20260621143407_AutoIncrementId")]
+    partial class AutoIncrementId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,20 +31,19 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Cargo")
+                    b.Property<string>("Company")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 
-                    b.Property<string>("Empresa")
+                    b.Property<string>("Position")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -54,9 +53,16 @@ namespace backend.Migrations
                         new
                         {
                             Id = 1,
-                            Cargo = "Auxiliar administrativo",
-                            Empresa = "Google",
-                            Status = "Pendente"
+                            Company = "Google",
+                            Position = "Auxiliar administrativo",
+                            Status = "Pending"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Company = "Amazon",
+                            Position = "Auxiliar logístico",
+                            Status = "Cancelled"
                         });
                 });
 #pragma warning restore 612, 618

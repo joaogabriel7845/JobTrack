@@ -40,8 +40,7 @@ namespace backend.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -53,7 +52,14 @@ namespace backend.Migrations
                             Id = 1,
                             Company = "Google",
                             Position = "Auxiliar administrativo",
-                            Status = "Pendente"
+                            Status = "Pending"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Company = "Amazon",
+                            Position = "Auxiliar logístico",
+                            Status = "Cancelled"
                         });
                 });
 #pragma warning restore 612, 618

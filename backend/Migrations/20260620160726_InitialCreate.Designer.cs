@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260619161801_InitialCreate")]
+    [Migration("20260620160726_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -31,21 +31,40 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Cargo")
+                    b.Property<string>("Company")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
-                    b.Property<string>("Empresa")
+                    b.Property<string>("Position")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Applications");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Company = "Google",
+                            Position = "Auxiliar administrativo",
+                            Status = "Pending"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Company = "Amazon",
+                            Position = "Auxiliar logístico",
+                            Status = "Cancelled"
+                        });
                 });
 #pragma warning restore 612, 618
         }
