@@ -1,5 +1,7 @@
+using backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using backend.Enums;
 
 namespace backend.Controllers;
 
@@ -7,63 +9,83 @@ namespace backend.Controllers;
 [Route("api/[controller]")]
 public class ApplicationController : ControllerBase
 {
-    private readonly AppDbContext _context;
 
-    public ApplicationController( AppDbContext context )
+    private IApplicationService _applicationService;
+    
+    public ApplicationController(IApplicationService applicationService)
     {
-        _context = context;
+        _applicationService = applicationService;
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<ActionResult<IAsyncEnumerable<Application>>> GetApplications()
     {
-        try
+        var applications = await _applicationService.GetApplications();
+        return Ok(applications);
+    }
+
+    [HttpGet("ApplicationsByName")]
+    public async Task<ActionResult<IAsyncEnumerable<Application>>> GetApplicationsByName([FromQuery] string positionName)
+    {
+        var applications = await _applicationService.GetApplicationsByName(positionName);
+
+        if(applications.Count() == 0)
         {
-            var applications = await _context.Applications.ToListAsync();
-            return Ok(applications);
+            return NotFound($"No applications with position {positionName} found");
         }
-        catch (Exception ex)
+
+        return Ok(applications);
+    }
+
+    [HttpGet("{id:int}", Name="GetApplication")]
+    public async Task<ActionResult<Application>> GetApplication(int id)
+    {
+        var application = await _applicationService.GetApplication(id);
+
+        if (application == null)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            return NotFound($"Application (ID: {id}) not found");
         }
+
+        return Ok(application);
+    }
+
+    [HttpGet("status/{status}")]
+    public async Task<ActionResult> GetByStatus(ApplicationStatus status)
+    {
+        var applications = await _applicationService.GetApplicationsWithStatus(status);
+
+        return Ok(applications);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(Application application)
+    public async Task<ActionResult> CreateApplication(Application application)
     {
-        try
-        {
-            _context.Applications.Add(application);
-            await _context.SaveChangesAsync();
-            return Ok(application);
-        }
-        catch (Exception ex)
-        {
-           return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
+        await _applicationService.CreateApplication(application);
+        return CreatedAtRoute(nameof(GetApplication), new {id = application.Id}, application);
+        
     }
 
-    [HttpPut]
-
-    public async Task<IActionResult> Edit(int id, [FromBody] Application application)
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult> UpdateApplication(int id, [FromBody] Application application)
     {
-        try
+        application.Id = id;
+
+        await _applicationService.UpdateApplication(application);
+        return NoContent();
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<ActionResult> DeleteApplication(int id)
+    {
+        var application = await _applicationService.GetApplication(id);
+
+        if (application == null)
         {
-            if (id != application.Id)
-            {
-                return BadRequest("ID in url and body mismatches");
-            }
-            if (!await _context.Applications.AnyAsync(a => a.Id == id))
-            {
-                return NotFound();
-            }
-            _context.Applications.Update(application);
-            await _context.SaveChangesAsync();
-            return NoContent();
+            return NotFound($"Application ID: {id} not found");
         }
-        catch(Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
+
+        await _applicationService.DeleteApplication(application);
+        return Ok($"Application ID: {id} deleted successfully");
     }
 }
