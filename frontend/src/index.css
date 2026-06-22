@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
+@import "@heroui/styles"; 
 
 @theme {
   --color-deep-space-blue: #012a4a;
@@ -14,4 +15,48 @@
 
   --color-sky-blue-light: #89c2d9;
   --color-light-blue: #a9d6e5;
+}
+
+.btn-header {
+  padding-left: 2.25rem;   
+  padding-right: 2.25rem;
+  padding-top: 1rem;       
+  padding-bottom: 1rem;
+
+  color: #fff;             
+  font-weight: 600;        
+  font-family: "Raleway", sans-serif; 
+
+  background-color: var(--color-yale-blue-dark); 
+  border-radius: 9999px;   
+
+  display: none;           
+
+  transition: opacity 0.2s ease;
+}
+
+
+.btn-auth {
+  padding-left: 2.25rem;   
+  padding-right: 2.25rem;
+  padding-top: 1rem;       
+  padding-bottom: 1rem;
+
+  color: #fff;             
+  font-weight: 600;        
+  font-family: "Raleway", sans-serif; 
+
+  background-color: var(--color-yale-blue-dark); 
+  border-radius: 9999px;          
+
+  transition: opacity 0.2s ease;
+}
+
+.btn-header:hover .btn-auth:hover {
+  opacity: 0.95;           
+}
+@media (min-width: 768px) {
+  .btn-header {
+    display: block;
+  }
 }
