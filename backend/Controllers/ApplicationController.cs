@@ -1,6 +1,5 @@
 using backend.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using backend.Enums;
 
 namespace backend.Controllers;
