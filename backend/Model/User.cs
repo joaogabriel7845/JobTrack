@@ -5,13 +5,13 @@ public class User
 {   
     public int Id { get; set; }
 
-    [MaxLength(30)]
+    [MaxLength(100)]
     [Required]
     public string Name { get; set; } = string.Empty;
-    [MaxLength(30)]
+    [MaxLength(255)]
     [Required]
     public string Email { get; set; } = string.Empty;
-    [MaxLength(30)]
+    [MaxLength(255)]
     [Required]
     public string PasswordHash { get; set; } = string.Empty;
 }

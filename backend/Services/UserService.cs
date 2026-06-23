@@ -22,7 +22,7 @@ namespace backend.Services
 
             if (user == null)
             {
-                throw new KeyNotFoundException("Application not found");
+                throw new KeyNotFoundException("User not found");
             }
 
             return user;
@@ -30,11 +30,11 @@ namespace backend.Services
 
         public async Task<User> GetByEmail(string email)
         {
-            var user = await _context.Users.FindAsync(email);
+            var user = await _context.Users.FirstOrDefaultAsync(e => e.Email == email);
 
             if (user == null)
             {
-                throw new KeyNotFoundException("Application not found");
+                throw new KeyNotFoundException("User not found");
             }
 
             return user;
