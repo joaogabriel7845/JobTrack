@@ -110,6 +110,7 @@ function AuthLayout({ children }) {
                         className="w-full flex flex-col gap-5 absolute bottom-0 left-0 p-15"
                     >
 
+                        <motion.p variants={item} className="text-white text-6xl font-bold font-[Raleway]">{currentPhrase.title}</motion.p>
                         <motion.p variants={item} className="text-white text-2xl font-[Raleway]">{currentPhrase.description}</motion.p>
 
                     </motion.div>
