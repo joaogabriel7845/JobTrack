@@ -1,15 +1,21 @@
 import {InputOTP, Label, Surface} from '@heroui/react';
 import { useState } from 'react';
 import Button from './Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelopeCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 function CustomInputOTP() {
 
     const [msgInfo, setMsgInfo] = useState("Enviamos um código para o seu email !")
 
     return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col items-center p-2 gap-5">
         
         <Label className="text-xl text-center text-yale-blue-dark font-semibold font-[Raleway]">{msgInfo}</Label>
+
+         <div className="w-fit p-10 rounded-full justify-center items-center bg-gray-200/40">
+            <FontAwesomeIcon className="text-yale-blue-dark" icon={faEnvelopeCircleCheck} fontSize={28}/>
+        </div>
         
         <Label className="text-sm text-gray-500 text-center font-semibold font-[Raleway]">Insira o código de verificação</Label>
 

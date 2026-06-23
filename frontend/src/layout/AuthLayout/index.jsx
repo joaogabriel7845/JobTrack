@@ -1,6 +1,4 @@
 import { useLocation } from "react-router-dom";
-import background from "../../assets/Png/background.png"
-import document from "../../assets/Png/document.png"
 import Header from "../../components/Header";
 import Register from "../../pages/Auth/Register";
 import { motion } from "motion/react";
@@ -111,7 +109,6 @@ function AuthLayout({ children }) {
                         variants={container}
                         className="w-full flex flex-col gap-5 absolute bottom-0 left-0 p-15"
                     >
-                        <motion.h2 variants={item} className="text-6xl font-[Raleway] font-bold text-white">{currentPhrase.title}</motion.h2>
 
                         <motion.p variants={item} className="text-white text-2xl font-[Raleway]">{currentPhrase.description}</motion.p>
 

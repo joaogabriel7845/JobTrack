@@ -1,5 +1,3 @@
-import wave from "../../../assets/Png/wave.png";
-import document from "../../../assets/Png/document.png";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import { faAt, faUserAlt } from "@fortawesome/free-solid-svg-icons";
