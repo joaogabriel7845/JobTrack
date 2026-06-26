@@ -132,3 +132,4 @@ E:\Visual Code\Projetos\JobTrack\backend\obj\Debug\net10.0\refint\backend.dll
 E:\Visual Code\Projetos\JobTrack\backend\obj\Debug\net10.0\backend.pdb
 E:\Visual Code\Projetos\JobTrack\backend\obj\Debug\net10.0\backend.genruntimeconfig.cache
 E:\Visual Code\Projetos\JobTrack\backend\obj\Debug\net10.0\ref\backend.dll
+E:\Visual Code\Projetos\JobTrack\backend\bin\Debug\net10.0\BCrypt-Net-Next.dll
